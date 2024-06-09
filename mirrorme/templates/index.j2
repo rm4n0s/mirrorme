@@ -1,64 +1,44 @@
-
 <!DOCTYPE html>
-<html lang="en">
- 
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
- 
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebRTC webcam</title>
     <style>
-        div {
-            width: 500px;
-            height: 400px;
-            border: 2px solid black;
-            position: relative;
-        }
- 
-        video {
-            width: 500px;
-            height: 400px;
-            object-fit: cover;
-        }
+    button {
+        padding: 8px 16px;
+    }
+
+    video {
+        width: 100%;
+    }
+
+    .option {
+        margin-bottom: 8px;
+    }
+
+    #media {
+        max-width: 1280px;
+    }
     </style>
 </head>
- 
 <body>
- 
- 
-    <div>
-        <video id="vid"></video>
-    </div>
-    <br />
-    <button id="but" autoplay>
-        Open WebCam
-    </button>
+
+<button id="start" onclick="start()">Start</button>
+<button id="stop" style="display: none" onclick="stop()">Stop</button>
+
+<div id="media">
+    <h2>From Desktop</h2>
+
+    <video id="desktop-video" autoplay="true" playsinline="true"></video>
+
+    <h2>From Mobile</h2>
+
+    <video id="mobile-video" autoplay="true" playsinline="true"></video>
+
+
+</div>
+
+<script src="/static/index.js"></script>
 </body>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        let but = document.getElementById("but");
-        let video = document.getElementById("vid");
-        let mediaDevices = navigator.mediaDevices;
-        vid.muted = true;
-        but.addEventListener("click", () => {
- 
-            // Accessing the user camera and video.
-            mediaDevices
-                .getUserMedia({
-                    video: true,
-                    audio: true,
-                })
-                .then((stream) => {
-                    // Changing the source of video to current stream.
-                    video.srcObject = stream;
-                    video.addEventListener("loadedmetadata", () => {
-                        video.play();
-                    });
-                })
-                .catch(alert);
-        });
-    });
-</script>
- 
 </html>

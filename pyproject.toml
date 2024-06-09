@@ -27,3 +27,12 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 mirrorme = 'mirrorme.main:main'
+
+[tool.mypy]
+disallow_untyped_calls = false
+disallow_untyped_decorators = true
+ignore_missing_imports = true
+mypy_path = "stubs"
+strict_optional = false
+warn_redundant_casts = true
+warn_unused_ignores = true
