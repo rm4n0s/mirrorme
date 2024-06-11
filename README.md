@@ -20,20 +20,20 @@ poetry run mirrorme
 ```
 
 On the initialization select the network interface of your LAN for the connection between your laptop and mobile phone.<br/>
-![](https://github.com/rm4n0s/mirrorme/images/initialization.png)
+![](https://github.com/rm4n0s/mirrorme/blob/main/images/initialization.png)
 
 After pressing start, you will see a link and QR Code.<br/>
-![](https://github.com/rm4n0s/mirrorme/images/qr_code.png)
+![](https://github.com/rm4n0s/mirrorme/blob/main/images/qr_code.png)
 
 Look at the QR code from your mobile's camera to redirect to the browser and visit the link.<br/>
-![](https://github.com/rm4n0s/mirrorme/images/scan_qrcode_from_mobile.png)
+![](https://github.com/rm4n0s/mirrorme/blob/main/images/scan_qrcode_from_mobile.png)
 
 From the browser you will see a security alert because the SSL is created and self-signed from the desktop application. <br/>
 Press "visit the page" or "accept the risk and continue" <br/>
-![](https://github.com/rm4n0s/mirrorme/images/pass_security_alert.png)
+![](https://github.com/rm4n0s/mirrorme/blob/main/images/pass_security_alert.png)
 
 When openning the web page, you will see a button "start" that will open your cameras to your screens from both laptop and mobile phone. <br/>
-![](https://github.com/rm4n0s/mirrorme/images/press_start.png)
+![](https://github.com/rm4n0s/mirrorme/blob/main/images/press_start.png)
 
 After pressing "start" you will see your mobile's camera on the desktop application and your laptop's camera on the browser <br/>
 
