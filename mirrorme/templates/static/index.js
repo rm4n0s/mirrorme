@@ -3,19 +3,20 @@ const constraints = (window.constraints = {
   video: true,
 });
 
-async function initMobileCamera(e) {
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia(constraints);
-    const video = document.getElementById('mobile-video');
-    const videoTracks = stream.getVideoTracks();
-    console.log('Got stream with constraints:', constraints);
-    console.log(`Using video device: ${videoTracks[0].label}`);
-    window.stream = stream; // make variable available to browser console
-    video.srcObject = stream;
-    e.target.disabled = true;
-  } catch (e) {
-    console.log(e);
-  }
+async function initMobileCamera() {
+  navigator.mediaDevices.getUserMedia(constraints).then(
+    function (stream) {
+      const video = document.getElementById("mobile-video");
+      video.srcObject = stream;
+      stream.getTracks().forEach(function (track) {
+        pc.addTrack(track, stream);
+      });
+      return negotiate();
+    },
+    function (err) {
+      alert("Could not acquire media: " + err);
+    }
+  );
 }
 var pc = null;
 
@@ -82,17 +83,14 @@ function start() {
     }
   });
 
-  initMobileCamera()
+  initMobileCamera();
 
   document.getElementById("start").style.display = "none";
-  negotiate();
   document.getElementById("stop").style.display = "inline-block";
 }
 
 function stop() {
   document.getElementById("stop").style.display = "none";
-
-  // close peer connection
   setTimeout(() => {
     pc.close();
   }, 500);

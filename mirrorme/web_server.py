@@ -1,4 +1,3 @@
-import ssl
 import aiohttp_jinja2
 import jinja2
 import os
@@ -16,7 +15,6 @@ async def index_handler(request: web.Request) -> web.Response:
 def start_server(port: int, ip: str):
     async_loop = asyncio.new_event_loop()
     app = web.Application()
-    app.on_shutdown.append(webrtc.on_shutdown)
     aiohttp_jinja2.setup(
         app,
         loader=jinja2.FileSystemLoader(

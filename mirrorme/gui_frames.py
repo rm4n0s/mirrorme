@@ -1,9 +1,12 @@
+import threading
 from tkinter import *
 from tkinter import ttk
 from typing import List
 import psutil
 import socket
 from . import gui_actions
+from .globals import photo_queue
+
 from PIL import ImageTk
 
 
@@ -68,4 +71,13 @@ def create_image_frame(app: Tk, link: str, qr_image: ImageTk.PhotoImage) -> Fram
     photo_label.photo_image = qr_image  # type: ignore
     photo_label.configure(image=qr_image)  # type: ignore
 
+    def refresh_photo_image():
+        global photo_queue
+        while True:
+            photo_image = photo_queue.get(block=True)
+            photo_label.configure(image=photo_image)  # type: ignore
+            photo_label.im = photo_image  # type: ignore
+
+    t1 = threading.Thread(target=refresh_photo_image)
+    t1.start()
     return frame

@@ -3,7 +3,7 @@ import segno
 import io
 from PIL import Image as ImagePIL, ImageTk
 import threading
-from . import server
+from . import web_server
 import os
 
 
@@ -13,7 +13,7 @@ def create_action_start_server(ip_entry: Entry, port_entry: Entry):
         ip = ip_entry.get().split(":")[1].strip()
         print(f"{port} {ip}")
         server_thread = threading.Thread(
-            target=server.start_server,
+            target=web_server.start_server,
             args=(
                 int(port),
                 ip,
