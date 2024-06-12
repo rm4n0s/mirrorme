@@ -6,6 +6,7 @@ import psutil
 import socket
 from . import gui_actions
 from .globals import photo_queue
+from .utils import get_list_of_devices
 
 from PIL import ImageTk
 
@@ -33,7 +34,19 @@ def initial_form_frame(app: Tk) -> Frame:
     ip_entry.current(0)
     ip_entry.grid(row=1, column=1, sticky=W, pady=2)
 
+    dev_label = Label(frame, text="Video device:")
+    dev_label.grid(row=2, column=0, sticky=W, pady=2)
+
+    dev_names = []
+    for name, devs in get_list_of_devices().items():
+        dev_names.append(f"{name.replace(":","")}: {devs[0]}")
+
+    video_dev_entry = ttk.Combobox(frame, values=dev_names)
+    video_dev_entry.current(0)
+    video_dev_entry.grid(row=2, column=1, sticky=W, pady=2)
+
     action_start_server = gui_actions.create_action_start_server(
+        video_dev_entry,
         ip_entry,
         port_entry,
     )
@@ -49,7 +62,7 @@ def initial_form_frame(app: Tk) -> Frame:
         image_frame.pack()
 
     start_button = Button(frame, text="Start", command=start_server_and_create_qrcode)
-    start_button.grid(row=2, column=0, sticky=W, pady=2)
+    start_button.grid(row=3, column=0, sticky=W, pady=2)
 
     return frame
 

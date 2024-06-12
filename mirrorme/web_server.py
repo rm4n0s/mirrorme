@@ -12,7 +12,8 @@ async def index_handler(request: web.Request) -> web.Response:
     return response
 
 
-def start_server(port: int, ip: str):
+def start_server(video_dev: str, port: int, ip: str):
+    wrtc = webrtc.WebRTC(video_dev)
     async_loop = asyncio.new_event_loop()
     app = web.Application()
     aiohttp_jinja2.setup(
@@ -27,7 +28,7 @@ def start_server(port: int, ip: str):
         name="static",
     )
     app.add_routes(
-        [web.get("/", index_handler), web.post("/offer", webrtc.offer_handler)]
+        [web.get("/", index_handler), web.post("/offer", wrtc.offer_handler)]
     )
     handler = app.make_handler(loop=async_loop)
     ssl_context = create_ssl_context(ip)

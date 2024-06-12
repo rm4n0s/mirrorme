@@ -2,7 +2,7 @@
 
 This project is a desktop application to be able to look at your scalp (or other body parts) from your laptop using your mobile phone's camera or vice versa. <br/>
 The desktop application will create a web server so any device with a browser and a camera can visit it and create a WebRTC connection between them. <br/>
-However, this application is created to learn more about python, webrtc and tkinter, for that reason, it is missing features, and may work only on linux. <br/>
+However, this application is created to learn more about python, webrtc and tkinter, for that reason, it is missing features, and works only on linux. <br/>
 
 ## Install
 Clone the repo and install dependencies

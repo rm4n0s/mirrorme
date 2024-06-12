@@ -7,14 +7,18 @@ from . import web_server
 import os
 
 
-def create_action_start_server(ip_entry: Entry, port_entry: Entry):
+def create_action_start_server(
+    video_dev_entry: Entry, ip_entry: Entry, port_entry: Entry
+):
     def action_start_server():
         port = port_entry.get()
+        video_dev = video_dev_entry.get().split(":")[1].strip()
         ip = ip_entry.get().split(":")[1].strip()
         print(f"{port} {ip}")
         server_thread = threading.Thread(
             target=web_server.start_server,
             args=(
+                video_dev,
                 int(port),
                 ip,
             ),
